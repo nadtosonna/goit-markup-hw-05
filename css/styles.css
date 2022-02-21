@@ -8,6 +8,7 @@
   --background-color: #2f303a;
   --button-background: #f5f4fa;
   --icon-basic-color: #afb1b8;
+  --time-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 html {
@@ -151,7 +152,7 @@ header {
   color: var(--main-text-color);
   font-weight: 500;
 
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms var(--time-function);
 }
 .contacts .link:hover,
 .contacts .link:focus {
@@ -318,8 +319,7 @@ header {
   height: 44px;
   border-radius: 50%;
 
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms var(--time-function), fill 250ms var(--time-function);
 }
 .social-link:hover,
 .social-link:focus {
@@ -349,7 +349,7 @@ header {
   border: 1px solid var(--icon-basic-color);
   border-radius: 4px;
 
-  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: fill 250ms var(--time-function);
 }
 .client-link:hover,
 .client-link:focus {
@@ -423,13 +423,54 @@ header {
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.1);
 
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms var(--time-function);
 }
 .social-link-footer:hover,
 .social-link-footer:focus {
   background-color: var(--accent-color);
 }
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
 
+  width: 528px;
+  height: 581px;
+  border-radius: 4px;
+  background-color: var(--invert-text-color);
+  opacity: 1;
+  transition: 250ms var(--time-function);
+
+  transition: transform 250ms var(--time-function);
+}
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.5);
+}
+.close-button {
+  position: absolute;
+  align-content: center;
+  top: 0;
+  right: 0;
+  margin-top: 8px;
+  margin-right: 8px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
 /* Стили для portfolio.html */
 
 .filter {
@@ -452,8 +493,7 @@ header {
   border-radius: 4px;
   border: transparent;
 
-  transform: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    var(--button-background) 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform: color 250ms var(--time-function), var(--button-background) 250ms var(--time-function);
 }
 .filter > .portfolio-button:not(last-child) {
   margin-right: 8px;
@@ -503,24 +543,29 @@ header {
   border-left: 1px solid #eeeeee;
   border-right: 1px solid #eeeeee;
 }
-.projects-item {
+.overlay-block {
   position: relative;
+  overflow: hidden;
 }
 .portfolio-pannel {
   position: absolute;
   justify-content: center;
   padding: 63px 24px;
-  width: 100%;
+  width: 370px;
   height: 294px;
   left: 0;
-  bottom: 110px;
+  bottom: 0;
   font-size: 18px;
   line-height: 1.56;
   letter-spacing: 0.03em;
   background-color: var(--accent-color);
   opacity: 0;
   color: var(--invert-text-color);
+
+  transform: translateY(100%);
+  transition: transform 250ms var(--time-function);
 }
 .projects-item:hover .portfolio-pannel {
   opacity: 0.9;
+  transform: translateY(0);
 }

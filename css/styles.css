@@ -307,6 +307,8 @@ header {
 .networks-icon {
   background-size: contain;
   fill: var(--icon-basic-color);
+
+  transition: fill 250ms var(--time-function);
 }
 .networks-icon:hover {
   fill: var(--invert-text-color);
@@ -349,12 +351,11 @@ header {
   border: 1px solid var(--icon-basic-color);
   border-radius: 4px;
 
-  transition: fill 250ms var(--time-function);
+  transition: border 250ms var(--time-function);
 }
 .client-link:hover,
 .client-link:focus {
   border: 1px solid var(--accent-color);
-  border-radius: 4px;
 }
 .client-link:hover .client-icon {
   fill: var(--accent-color);
@@ -364,6 +365,8 @@ header {
 }
 .client-icon {
   fill: var(--icon-basic-color);
+
+  transition: fill 250ms var(--time-function);
 }
 
 .footer {
@@ -494,7 +497,8 @@ header {
   border-radius: 4px;
   border: transparent;
 
-  transform: color 250ms var(--time-function), var(--button-background) 250ms var(--time-function);
+  transform: color 250ms var(--time-function), background-color 250ms var(--time-function),
+    box-shadow 250ms var(--time-function);
 }
 .filter > .portfolio-button:not(last-child) {
   margin-right: 8px;
